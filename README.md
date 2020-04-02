@@ -124,7 +124,7 @@ IpfsDB supports storing & retrieving big files (file size to be decided) like im
 
 #### MagnumFS
 
-MagnumFS uses IPFS to store big files and manages the hashes of the files in IpfsDB.
+MagnumFS uses IPFS to store big files and manages the hashes of the files in IpfsDB. Something similar to [GridFS](https://docs.mongodb.com/manual/core/gridfs/) in MongoDB.
 
 [TODO: Add more detials]
 
