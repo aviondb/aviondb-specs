@@ -124,9 +124,9 @@ AvionDB supports storing & retrieving big files (file size to be decided) like i
 
 #### MagnumFS
 
-MagnumFS uses IPFS to store big files and manages the hashes of the files in AvionDB.
+MagnumFS uses IPFS to store big files and manages the hashes of the files in IpfsDB. Something similar to [GridFS](https://docs.mongodb.com/manual/core/gridfs/) in MongoDB.
 
-[TODO: Add more detials]
+[TODO: Add more details]
 
 ### Decentralized Data Query (Local & Global)
 
