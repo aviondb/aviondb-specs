@@ -1,8 +1,8 @@
-## IpfsDB Specs [Draft]
+## AvionDB Specs [Draft]
 
 ---
 
-> IpfsDB aims to bring MongoDB-like developer interface to Web 3.0. This document provides an introduction to the IpfsDB.
+> AvionDB aims to bring MongoDB-like developer interface to Web 3.0. This document provides an introduction to the AvionDB.
 
 **DISCLAIMER: This document will be subjected to drastic changes. I assure you, we are not even sure with name of the project 😂 Feel free to jump in to discuss about this document [here](https://discord.gg/sFXyza), and add issues, PR 😉**
 
@@ -26,17 +26,17 @@ You have the following stores available in OrbitDB out-of-the-box:
 
 ### Architecture
 
-![IpfsDB Architecture](./assets/Architecture.png)
+![AvionDB Architecture](./assets/Architecture.png)
 
-IpfsDB uses OrbitDB stores to model MongoDB-like Databases. It creates a notion of:
+AvionDB uses OrbitDB stores to model MongoDB-like Databases. It creates a notion of:
 
-- A list of [Databases](#databases).
+- Each AvionDB instance can have several [Databases](#databases).
 - Each Database can have several [Collections](#collections). The strucuture of these Collections are defined by [Schemas](#Schemas)
 - Each Collection can have several [Documents](#Documents).
 
 #### Databases
 
-IpfsDB maintains a list of Databases using a `kvstore`.
+AvionDB maintains a list of Databases using a `kvstore`.
 
 ```json
 {
@@ -59,7 +59,7 @@ This `kvstore` stores basic details about the created databases:
 
 #### Collections
 
-IpfsDB maintains a list of Collections using a `kvstore`.
+AvionDB maintains a list of Collections using a `kvstore`.
 
 ```json
 {
@@ -82,7 +82,7 @@ This `kvstore` stores basic details about the created collections:
 
 #### Documents
 
-IpfsDB maintains a list of Documents using a `docstore`.
+AvionDB maintains a list of Documents using a `docstore`.
 
 ```json
 [
@@ -103,13 +103,13 @@ Each document in the `docstore` is indexed by an `"_id"`. It allows you to add a
 
 #### Schemas
 
-A IpfsDB service document schema is a `JSON` object that allows you to define the shape and content of documents and embedded documents in a collection. You can use a schema to require a specific set of fields, configure the content of a field, or to validate changes to a document based on its beginning and ending states.
+A AvionDB service document schema is a `JSON` object that allows you to define the shape and content of documents and embedded documents in a collection. You can use a schema to require a specific set of fields, configure the content of a field, or to validate changes to a document based on its beginning and ending states.
 
 [TODO: Add Schema Example]
 
 ### Supported Methods/Operations
 
-IpfsDB creates a wrapper around OrbitDB `put`, `get` methods, allowing for complex queries for adding, updating, fetching & deleting documents.
+AvionDB creates a wrapper around OrbitDB `put`, `get` methods, allowing for complex queries for adding, updating, fetching & deleting documents.
 
 For example,
 
@@ -120,21 +120,21 @@ For example,
 
 ### Storing & Retrieving big files
 
-IpfsDB supports storing & retrieving big files (file size to be decided) like images, gifs, audio, video, etc. using [MagnumFS](#magnumfs).
+AvionDB supports storing & retrieving big files (file size to be decided) like images, gifs, audio, video, etc. using [MagnumFS](#magnumfs).
 
 #### MagnumFS
 
-MagnumFS uses IPFS to store big files and manages the hashes of the files in IpfsDB.
+MagnumFS uses IPFS to store big files and manages the hashes of the files in AvionDB.
 
 [TODO: Add more detials]
 
 ### Decentralized Data Query (Local & Global)
 
-IpfsDB allows you to query data in 2 ways: _Local_ & _Global_.
+AvionDB allows you to query data in 2 ways: _Local_ & _Global_.
 
 #### Local Data Query
 
-In this type of query, you usually deal with databases which are local to your IPFS node. So, the search happens only within your local IpfsDB database.
+In this type of query, you usually deal with databases which are local to your IPFS node. So, the search happens only within your local AvionDB database.
 
 [TODO: Provide more details]
 
@@ -148,7 +148,7 @@ Here the databases can be pubic/private within a set of peers in the network.
 
 ### Dynamic Access Control
 
-IpfsDB exposes a powerful dynamic access control, thanks to [OrbitDB's extensible authentication middleware](https://github.com/orbitdb/orbit-db-access-controllers#creating-a-custom-access-controller).
+AvionDB exposes a powerful dynamic access control, thanks to [OrbitDB's extensible authentication middleware](https://github.com/orbitdb/orbit-db-access-controllers#creating-a-custom-access-controller).
 
 By default OrbitDB uses `OrbitDBAccessController` which can be extended to add additional authentication. This additional authentication can be anything ranging from authenticating with Metmask, 3ID, DIDs, etc., to calling any APIs to validate access.
 
@@ -156,14 +156,14 @@ There is on going discussion on dynamic access control using [ceramic protocol](
 
 ### Data Replication
 
-As we are dealing with databases, we will require to replicate our databases for scaling, backup and sharing data across multiple peers. IpfsDB uses [pub-sub](https://github.com/ipfs/interface-js-ipfs-core) to communicate addresses of databases, collections & documents among the peers in the network. Using the addresses, the peers can replicate the databases, collections & documents on their local IPFS nodes.
+As we are dealing with databases, we will require to replicate our databases for scaling, backup and sharing data across multiple peers. AvionDB uses [pub-sub](https://github.com/ipfs/interface-js-ipfs-core) to communicate addresses of databases, collections & documents among the peers in the network. Using the addresses, the peers can replicate the databases, collections & documents on their local IPFS nodes.
 
 [TODO: Add more details]
 
 ### Encryption/Decryption
 
-IpfsDB provides configurable encryption/decryption out-of-the-box. It provides basic encryption (encryption schemes to be decided) which can be configured to use any other encryption schemes of your choice & security needs.
+AvionDB provides configurable encryption/decryption out-of-the-box. It provides basic encryption (encryption schemes to be decided) which can be configured to use any other encryption schemes of your choice & security needs.
 
 ### On-Going Discussions
 
-- **Using [Ceramic Protocol](https://www.ceramic.network/) with IpfsDB**: Join the discussion [here](https://discord.gg/cXyREx)
+- **Using [Ceramic Protocol](https://www.ceramic.network/) with AvionDB**: Join the discussion [here](https://discord.gg/cXyREx)
